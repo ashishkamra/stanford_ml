@@ -11,18 +11,21 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
-
-
-
-
-
-
-
-
-
 % =========================================================================
 
+% find all indices in 'y' with y == 1
+pos = find(y==1);
 
+% find all indices in 'y' with y == 0
+neg = find(y==0);
+
+% plot the y==1 data points in X
+plot(X(pos,1), X(pos,2), 'x', 'LineWidth', 2, ...
+      'MarkerSize', 5)
+
+% plot the y==0 data points in X
+plot(X(neg,1), X(neg,2), 'o', 'MarkerFaceColor', 'y', ...
+      'MarkerSize', 5)
 
 hold off;
 
