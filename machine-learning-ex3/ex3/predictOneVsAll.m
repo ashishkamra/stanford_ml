@@ -30,6 +30,9 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% max_e containes the max of the hypothesis for each training example
+% p contains the index of max_e among all the label values
+[max_e, p] = max(sigmoid(X*all_theta'), [], 2);
 
 
 
