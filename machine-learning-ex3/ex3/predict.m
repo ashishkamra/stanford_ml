@@ -23,6 +23,21 @@ p = zeros(size(X, 1), 1);
 
 
 
+% first layer
+X = [ones(m, 1) X]; % Add the bias
+A_1 = X;
+
+% hidden layer
+Z_2 = A_1*Theta1';
+A_2 = sigmoid(Z_2);
+A_2 = [ones(m,1) A_2]; % Add the bias
+
+% output layer
+Z_3 = A_2*Theta2';
+A_3 = sigmoid(Z_3);
+
+[max_e, p] = max(A_3, [], 2);
+
 
 
 
