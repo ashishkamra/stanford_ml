@@ -62,12 +62,8 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-%vectorize y
+%vectorize y lables
 Y_t = y_vect(y,num_labels);
-
-
-fprintf('\ny vectorized. Program paused. Press enter to continue.\n');
-pause;
 
 % first layer
 X = [ones(m, 1) X]; % Add the bias
@@ -82,19 +78,22 @@ A_2 = [ones(m,1) A_2]; % Add the bias
 Z_3 = A_2*Theta2';
 A_3 = sigmoid(Z_3);
 
-
-fprintf('\nOutput layer computed. Program paused. Press enter to continue.\n');
-pause;
-
+% Calculating J with a for-loop (for every training example, 
+% calculate the error for every o/p label)
 for i = 1:m
   J = J + (Y_t(i,:)*log(A_3(i,:)') + (1 - Y_t(i,:))*log(1 - A_3(i,:)'));
 endfor
 
-J = (-1/m)*(J);
+J = (-1/m)*J;
 
+%regularization. slice the first column out of each Theta
+Theta1_s = Theta1(:,2:end);
+Theta2_s = Theta2(:,2:end);
 
+% regularization term is sum of squares of all values of Theta1_s and Theta2_s
+regu_t = (lambda/(2*m))*(sum(sum(Theta1_s.^2)) + sum(sum(Theta2_s.^2)));
 
-
+J = J + regu_t;
 
 
 
