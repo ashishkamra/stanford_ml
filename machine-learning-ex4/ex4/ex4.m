@@ -120,7 +120,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================ Part 6: Initializing Pameters ================
+%% ================ Part 6: Initializing Parameters ================
 %  In this part of the exercise, you will be starting to implment a two
 %  layer neural network that classifies digits. You will start by
 %  implementing a function to initialize the weights of the neural network
@@ -183,10 +183,10 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-options = optimset('MaxIter', 50);
+options = optimset('MaxIter', 100);
 
 %  You should also try different values of lambda
-lambda = 1;
+lambda = 0.5;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...

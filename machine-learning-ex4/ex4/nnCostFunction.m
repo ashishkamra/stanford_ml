@@ -65,6 +65,8 @@ Theta2_grad = zeros(size(Theta2));
 %vectorize y lables
 Y_t = y_vect(y,num_labels);
 
+%%% Feedforward
+
 % first layer
 X = [ones(m, 1) X]; % Add the bias
 A_1 = X;
@@ -78,35 +80,59 @@ A_2 = [ones(m,1) A_2]; % Add the bias
 Z_3 = A_2*Theta2';
 A_3 = sigmoid(Z_3);
 
-% Calculating J with a for-loop (for every training example, 
-% calculate the error for every o/p label)
-for i = 1:m
-  J = J + (Y_t(i,:)*log(A_3(i,:)') + (1 - Y_t(i,:))*log(1 - A_3(i,:)'));
+%% Implementing backpropagation algorithm
+
+% for every training example, do the following
+for t = 1:m
+
+% STEP:1 - feedforward (from above)
+
+  % a_1 is the input layer
+  % X already has the bias added earlier in the code
+  a_1 = X(t,:); 
+  
+  % hidden layer activation
+  z_2 = Z_2(t,:);
+  a_2 = A_2(t,:);
+  
+  %o/p layer activation
+  z_3 = Z_3(t,:);
+  a_3 = A_3(t,:);
+  
+% STEP:2 - calculate the error terms
+
+  % the output layer error term
+  y = Y_t(t,:);
+  delta_3 = a_3 - y;
+  
+  %hidden layer error term
+  delta_2 = delta_3*Theta2;
+  delta_2 = delta_2(2:end); % ignore the bias term in delta_2
+  delta_2 = delta_2.*sigmoidGradient(z_2);
+  
+  %calculate the gradient
+  Theta2_grad = Theta2_grad + delta_3'*a_2;
+  Theta1_grad = Theta1_grad + delta_2'*a_1;
+
+  %calculate the cost  
+  J = J + (y*log(a_3') + (1 - y)*log(1 - a_3'));
 endfor
 
-J = (-1/m)*J;
-
-%regularization. slice the first column out of each Theta
+%cost regularization. slice the first column out of each Theta
 Theta1_s = Theta1(:,2:end);
 Theta2_s = Theta2(:,2:end);
 
 % regularization term is sum of squares of all values of Theta1_s and Theta2_s
 regu_t = (lambda/(2*m))*(sum(sum(Theta1_s.^2)) + sum(sum(Theta2_s.^2)));
+J = (-1/m)*J + regu_t;
 
-J = J + regu_t;
+%gradient regularization
+% add a column vector of zeros (do not regularize the bias term
+Theta1_r = [zeros(size(Theta1_s,1),1) Theta1_s];
+Theta2_r = [zeros(size(Theta2_s,1),1) Theta2_s];
 
-
-
-
-
-
-
-
-
-
-
-
-
+Theta2_grad = (1/m)*Theta2_grad + (lambda/m)*Theta2_r;
+Theta1_grad = (1/m)*Theta1_grad + (lambda/m)*Theta1_r;
 
 % -------------------------------------------------------------
 
@@ -114,6 +140,5 @@ J = J + regu_t;
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
-
 
 end
