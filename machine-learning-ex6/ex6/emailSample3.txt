@@ -1,0 +1,42 @@
+It was great to get to speak with you today.  
+
+Below is the information that I will need in order to start scheduling interviews.  Also attached/included is quite a bit of interview prep information.
+
+I look forward to hearing back from you!
+Nathan
+
+Items needed to start Scheduling Interviews
+
+1.  Your availability for interviews (please provide a 4-5 days and times between 10-4pm EST).  The initial phone screen will take around 45 minutes.  
+
+2.  An updated copy of your resume.
+
+3.  The names of any Google employees you may know.  
+
+
+Interview Prep 
+Attached is some material to help you prepare for your technical conversations. Inside the information there will be a few links, a video, and also a few practice problems to help you know what to expect.  We understand that the interviews tend to be more fundamental - data structures, algorithms, and coding - and different than what you are doing in your day to day. This will help you get geared up for the call.
+
+General Tips
+Many candidates have also found it helpful to practice writing their code in a Google doc and the running test cases on the code and optimizing it (Link). 
+
+Basics to practice heavily
+- writing your favorite O(nlogn) sort
+- various BST traversals (left-to-right, etc.)
+- writing (and debugging) binary search
+- DP algorithms like edit distance 
+
+Video
+How to work at Google - Example Coding / Engineering Interview
+
+Websites
+--Coding Challenges:
+LeetCode  (Go to Problems -> Algorithms)
+Project Euler
+
+--General Prep / Refresher Sites
+Data Structures and Algorithms
+Big-O Cheat Sheet
+GeeksforGeeks
+Top 10 Algos in Interview Questions
+High Scalability
