@@ -128,22 +128,47 @@ my_ratings = zeros(1682, 1);
 
 % Check the file movie_idx.txt for id of each movie in our dataset
 % For example, Toy Story (1995) has ID 1, so to rate it "4", you can set
-my_ratings(1) = 4;
+my_ratings(1) = 1;
 
 % Or suppose did not enjoy Silence of the Lambs (1991), you can set
-my_ratings(98) = 2;
+my_ratings(98) = 5;
 
 % We have selected a few movies we liked / did not like and the ratings we
 % gave are as follows:
-my_ratings(7) = 3;
-my_ratings(12)= 5;
-my_ratings(54) = 4;
-my_ratings(64)= 5;
-my_ratings(66)= 3;
+my_ratings(2) = 3;
+my_ratings(4)= 3;
+my_ratings(7) = 5;
+my_ratings(50)= 1;
+my_ratings(56)= 5;
+my_ratings(64) = 5;
+my_ratings(67) = 1;
 my_ratings(69) = 5;
-my_ratings(183) = 4;
+my_ratings(72) = 3;
+my_ratings(82) = 5;
+my_ratings(94) = 4;
+my_ratings(120) = 1;
+my_ratings(127) = 5;
+my_ratings(1215) = 1;
+my_ratings(974) = 5;
+my_ratings(708) = 2;
+my_ratings(682) = 3;
+my_ratings(660) = 5;
+my_ratings(580) = 4;
+my_ratings(550) = 5;
+my_ratings(527) = 5;
+my_ratings(427) = 5;
+my_ratings(364) = 1;
+my_ratings(357) = 5;
+my_ratings(286) = 5;
+my_ratings(272) = 5;
+my_ratings(251) = 4;
+my_ratings(238) = 2;
+my_ratings(237) = 5;
 my_ratings(226) = 5;
-my_ratings(355)= 5;
+my_ratings(216) = 5;
+my_ratings(182) = 5;
+my_ratings(180) = 3;
+my_ratings(161) = 4;
 
 fprintf('\n\nNew user ratings:\n');
 for i = 1:length(my_ratings)
@@ -192,7 +217,7 @@ Theta = randn(num_users, num_features);
 initial_parameters = [X(:); Theta(:)];
 
 % Set options for fmincg
-options = optimset('GradObj', 'on', 'MaxIter', 100);
+options = optimset('GradObj', 'on', 'MaxIter', 1000);
 
 % Set Regularization
 lambda = 10;
@@ -222,7 +247,7 @@ movieList = loadMovieList();
 
 [r, ix] = sort(my_predictions, 'descend');
 fprintf('\nTop recommendations for you:\n');
-for i=1:10
+for i=1:50
     j = ix(i);
     fprintf('Predicting rating %.1f for movie %s\n', my_predictions(j), ...
             movieList{j});
